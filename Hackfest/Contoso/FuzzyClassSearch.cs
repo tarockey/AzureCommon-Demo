@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
 
-namespace UoAHackdayBot.Logic
+namespace ContosoHack.Logic
 {
     public class FuzzyClassSearch
     {
@@ -34,7 +34,7 @@ namespace UoAHackdayBot.Logic
             queryString["suggesterName"] = "sug";
             queryString["mkt"] = "en-us";
 
-            var uri = "https://uoahackweel.search.windows.net/indexes/temp/docs/suggest?search=" + text + "&fuzzy=true&suggesterName=sug&api-version=2016-09-01";
+            var uri = "<<Azure Search URL>>" + text + "&fuzzy=true&suggesterName=sug&api-version=2016-09-01";
 
             var response = await client.GetAsync(uri);
             using (HttpContent content = response.Content)

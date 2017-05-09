@@ -1,1 +1,0 @@
-﻿Remove-AzureStorageAccount -StorageAccountName $storageAccountName

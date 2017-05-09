@@ -9,7 +9,7 @@ using Microsoft.Bot.Builder.Dialogs.Internals;
 using Microsoft.Bot.Builder.Internals.Fibers;
 using Microsoft.Bot.Connector;
 
-namespace UoAHackdayBot.Translate
+namespace ContosoHack.Translate
 {
     public sealed class InterceptBotToUser : IBotToUser
     {

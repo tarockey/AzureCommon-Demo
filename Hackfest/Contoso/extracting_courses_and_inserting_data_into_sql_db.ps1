@@ -1,9 +1,10 @@
-﻿$serverName = "jyseong-test-eastasia.database.windows.net"
-$databaseName ="mydb"
-$userName = "labuser"
-$password = "Wjswk123"
+﻿$serverName = "<<your database server name>>.database.windows.net"
+$databaseName ="<<database name>>"
+$userName = "<<user name>>"
+$password = "<<password>>"
 
-function getData_New ($course, $URI)
+
+function getData ($URI)
 {
 
     $HTML = Invoke-WebRequest -Uri $URI
@@ -69,47 +70,39 @@ function getData_New ($course, $URI)
             $description = $description -replace "'", "''"
         }
 
-        $prerequisites = $innerHTML.body.getElementsByClassName('prerequisite') | Select InnerText
-        if ($prerequisites.innerText.Length -eq 0) 
+        $prerequisite = $innerHTML.body.getElementsByClassName('prerequisite') | Select InnerText
+        if ($prerequisite.innerText.Length -eq 0) 
         {
             $prerequisite = ''
-            $restrcition = ''
         }
         else
         {
-            if ($prerequisites.Count -gt 1)
+            if ($prerequisite.Count -gt 0)
             {
-            $prerequisite.Count 
-
-                $prerequisite = $prerequisites[0].innerText.ToString() 
-                $prerequisite = $prerequisite -replace "'", "''"
-                $restrcition = $prerequisites[1].innerText.ToString()
-                $restrcition = $restrcition -replace "'", "''"
+                $prerequisite = $prerequisite[0].innerText.ToString() + ", " + $prerequisite[1].innerText.ToString()
             }
             else
             {
-                $prerequisite = $prerequisites.innerText.ToString()
+                $prerequisite = $prerequisite.innerText.ToString()
                 $prerequisite = $prerequisite -replace "'", "''"
-                $restrcition = ''
             }
         }
                 
         $query 
 
-        $query = "INSERT INTO tb_temp_course_new(courses, courseA, points, title, [description], prerequisite, Restriction) VALUES('" + $course + "', '" + $courseA + "', '" + $points + "', '" + $title + "', '" + $description + "', '" + $prerequisite + "', '" + $restrcition + "')"
+        $query = "INSERT INTO tb_temp_course(courseA, points, title, [description], prerequisite) VALUES('" + $courseA + "', '" + $points + "', '" + $title + "', '" + $description + "', '" + $prerequisite + "')"
 
         Invoke-Sqlcmd -ServerInstance $serverName -Database $databaseName -Username $userName -Password $password -Query $query | Format-Table
        
     }
 }
 
-
-$CourseURI  = "https://www.calendar.auckland.ac.nz/en/courses/faculty-of-engineering.html"
+Clear-Host
+$CourseURI  = #<URI for course list>
 $CourseHTML = Invoke-WebRequest -Uri $CourseURI
-$Links = $CourseHTML.ParsedHtml.body.getElementsByClassName('linkTxt') 
-
+$Links = $CourseHTML.ParsedHtml.body.getElementsByClassName('linkTxt') | Select href
 
 foreach ($Link in $Links)
 {
-    getData_New $Link.textContent $Link.href
+    getData($Link.href)
 }

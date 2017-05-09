@@ -1,1 +1,0 @@
-﻿Remove-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName -Force

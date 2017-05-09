@@ -104,7 +104,7 @@ function getData ($URI)
 }
 
 Clear-Host
-$CourseURI  = "https://www.calendar.auckland.ac.nz/en/courses/faculty-of-engineering.html"
+$CourseURI  = #<URI for course list>
 $CourseHTML = Invoke-WebRequest -Uri $CourseURI
 $Links = $CourseHTML.ParsedHtml.body.getElementsByClassName('linkTxt') | Select href
 
