@@ -1,0 +1,3 @@
+[https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-dotnet-core-1-landing/](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-dotnet-core-1-landing/)
+[https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-dotnet-core-2-architecture/](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-dotnet-core-2-architecture/)
+[https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-dotnet-core-4-avalibility-scale/](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-dotnet-core-4-avalibility-scale/)
